@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneaking.Sev - Essentials</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- PWA Config -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#000000">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Make it open like an app -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="display" content="standalone">
+
+  <!-- Android/Chrome Support -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <script>
+      if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Failed:', err));
+    }
+  </script>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Sneaking.<span>Sev</span></h1>
+      <p class="subtitle">Basic planning tool</p>
+    </header>
+
+    <section class="controls">
+      <input type="text" id="home-input" placeholder="Enter address to center map...">
+      <div class="btn-row">
+        <button id="map-btn">Sneaking Map</button>
+        <button id="notepad-btn">Private Notes</button>
+      </div>
+    </section>
+
+    <div class="results-container">
+      <div class="loading-spinner hidden" id="spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+      
+      <div class="error hidden" id="error">
+        <h3>Error</h3>
+        <p id="error-message"></p>
+      </div>
+      
+      <div id="map-container" class="map-container hidden">
+        <div id="map"></div>
+      </div>
+      
+      <div id="notepad-container" class="hidden">
+        <div class="notepad-container">
+          <div class="notepad-header">
+            <h3>Private Notes</h3>
+          </div>
+          <textarea id="note-content"></textarea>
+          <div class="notepad-controls">
+            <button id="save-notes">Save</button>
+            <button id="clear-notes" class="secondary">Clear</button>
+          </div>
+          <div id="note-status" class="status-message hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
